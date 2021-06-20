@@ -21,6 +21,19 @@ namespace S5_DatabaseFirstEF.Web.Controllers
             return PartialView(listadoCliente);
         }
 
+        public async Task<IActionResult> Obtener(int idCliente)
+        {
+            var customer = await CustomerRepository.Obtener(idCliente);
+            return Json(customer);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Eliminar(int idCliente)
+        {
+            bool exito = await CustomerRepository.Eliminar(idCliente);
+            return Json(exito);
+        }
+
         [HttpPost]
         public async Task<IActionResult> Grabar(
             int idCliente,
